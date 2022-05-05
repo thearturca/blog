@@ -13,6 +13,6 @@ export class BlogOrmEntity
     @Column()
     body: string;
 
-    @ManyToOne(() => AccountOrmEntity)
-    ownerId: AccountOrmEntity
+    @Column()
+    ownerId: number;
 }

@@ -16,9 +16,14 @@ export class UsersService {
         return account;
       }
 
+    async findUsernameByUserId(userId: number): Promise<string | null> {
+        const username: string | null = await this._usersLoadAccountPort.findUsernameById(userId);
+        return username;
+    }
+
     async addNewUser(user: NewUserEntity): Promise<UserEntity> {
         const hashedPassword: string = await bcrypt.hash(user.userSecret, 10);
-        const userWithHashedPassword: NewUserEntity = new NewUserEntity(user.username, user.fullName, hashedPassword)
+        const userWithHashedPassword: NewUserEntity = new NewUserEntity(user.username, hashedPassword, user.fullName,)
         return await this._usersLoadAccountPort.addNewAccount(userWithHashedPassword);
     }
 }

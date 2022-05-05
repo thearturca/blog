@@ -1,12 +1,13 @@
 import { Global, Module } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { BlogPersistenceAdapter } from "./blog-persistence.adapter";
+import { BlogOrmEntity } from "./blog.orm-entity";
 
 @Global()
 @Module({
     imports: 
     [
-        TypeOrmModule.forFeature([])
+        TypeOrmModule.forFeature([BlogOrmEntity])
     ],
     providers: 
     [BlogPersistenceAdapter],

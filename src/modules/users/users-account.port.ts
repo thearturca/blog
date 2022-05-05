@@ -6,4 +6,5 @@ export interface UsersAccountPort
 {
     loadAuthAccount(username: string): Promise<UserEntity | null>
     addNewAccount(user: NewUserEntity): Promise<UserEntity>
+    findUsernameById(userId: number): Promise<string | null>
 }

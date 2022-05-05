@@ -29,4 +29,15 @@ export class AccountPersistenceAdapter implements UsersAccountPort
         const newUser: AccountOrmEntity = await this._accountRepository.save(AccountMapper.mapNewUserToAccountOrmEntity(account));
         return AccountMapper.mapToAuthUserEntity(newUser);
     }
+
+    async findUsernameById(userId: number): Promise<string | null>
+    {
+        const user: AccountOrmEntity | undefined = await this._accountRepository.findOne({id: userId});
+        if (user === undefined)
+        {
+            return null;
+        }
+        const username = user.username;
+        return username;
+    }
 }
