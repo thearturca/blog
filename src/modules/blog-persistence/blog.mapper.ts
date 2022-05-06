@@ -3,9 +3,9 @@ import { BlogOrmEntity } from "./blog.orm-entity";
 
 export class BlogMapper
 {
-    static mapBlogOrmEntityToBlogPostEntity(blogOrmEntity: BlogOrmEntity): BlogPostEntity
+    static mapBlogOrmEntityToBlogPostEntity(blogOrmEntity: BlogOrmEntity, username: string): BlogPostEntity
     {
-        return new BlogPostEntity(blogOrmEntity.timestamp, blogOrmEntity.body, blogOrmEntity.ownerId, blogOrmEntity.id);
+        return new BlogPostEntity(blogOrmEntity.timestamp, blogOrmEntity.body, blogOrmEntity.ownerId, username, blogOrmEntity.id);
     }
 
     static mapBlogPostEntityToBlogOrmEntity(blogPost: BlogPostEntity): BlogOrmEntity
