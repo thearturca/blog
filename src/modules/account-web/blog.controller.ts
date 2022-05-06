@@ -7,6 +7,7 @@ import { UsersService } from "../users/users.service";
 import { BlogPostDTO } from "./blog-post.DTO";
 import { NewBlogPostDTO } from "./new-blog-post.DTO";
 import { UpdateBlogPostDTO } from "./update-blog-post.DTO";
+import { ApiResponse } from "@nestjs/swagger";
 
 @Controller("/blog")
 export class BlogController
@@ -14,8 +15,9 @@ export class BlogController
     constructor(@Inject(BlogService) private readonly _blogService: BlogService,
     @Inject(UsersService) private readonly _usersService: UsersService) {}
 
+    @ApiResponse({type: [BlogPostDTO]})
     @Get()
-    async loadAllPosts()
+    async loadAllPosts(): Promise<BlogPostDTO[]>
     {
         const blogPostsDTO: BlogPostDTO[] = [];
         const blogPostsEntities: BlogPostEntity[] = await this._blogService.loadBlogPosts();
@@ -32,6 +34,7 @@ export class BlogController
         return blogPostsDTO;
     }
 
+    @ApiResponse({type: BlogPostDTO, description: "Bearer authorization required"})
     @UseGuards(JwtAuthGuard)
     @Post()
     async savePost(@Body() newBlogPostDTO: NewBlogPostDTO, @Req() req: UserReq)
@@ -47,6 +50,7 @@ export class BlogController
         return blogPostDTO;
     }
 
+    @ApiResponse({type: BlogPostDTO, description: "Bearer authorization required"})
     @UseGuards(JwtAuthGuard)
     @Put(':id')
     async updatePost(@Body() updateBlogPostDTO: UpdateBlogPostDTO, @Req() req: UserReq, @Param() params: {id: string})
@@ -66,6 +70,7 @@ export class BlogController
         return blogPostDTO;
     }
 
+    @ApiResponse({type: BlogPostDTO, description: "Bearer authorization required"})
     @UseGuards(JwtAuthGuard)
     @Delete(':id')
     async removePost(@Req() req: UserReq, @Param() params: {id: string})

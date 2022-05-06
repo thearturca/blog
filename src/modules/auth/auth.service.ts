@@ -4,18 +4,36 @@ import * as bcrypt from 'bcrypt';
 import { NewUserEntity } from '../users/new-user.entity.';
 import { UserEntity } from '../users/user.entity';
 import { UsersService } from '../users/users.service';
+import { ApiProperty } from '@nestjs/swagger'
 
-export interface Payload 
+export class Payload 
 {
+    @ApiProperty()
     sub: number;
+
+    @ApiProperty()
     username: string;
 }
 
-export interface UserPayload 
+export class UserPayload 
 {
-    readonly id: number,
-    readonly username: string,
-    readonly fullName: string,
+    @ApiProperty()
+    readonly id: number;
+
+    @ApiProperty()
+    readonly username: string;
+
+    @ApiProperty()
+    readonly fullName: string;
+}
+
+export class LoginPayload
+{
+    @ApiProperty()
+    user: UserPayload;
+
+    @ApiProperty()
+    access_token: string;
 }
 
 @Injectable()
@@ -54,7 +72,7 @@ export class AuthService
         return await this.login(newUser);
     }
 
-    async login(user: UserEntity) 
+    async login(user: UserEntity): Promise<LoginPayload>
     {
         const payload: Payload = 
         {

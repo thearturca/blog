@@ -1,8 +1,9 @@
 import { NewUserEntity } from "../users/new-user.entity.";
 import { UserEntity } from "../users/user.entity";
+import {  ApiProperty } from "@nestjs/swagger"
 
-
-export interface UserReq {
+export class UserReq {
+    @ApiProperty()
     user: UserEntity;
 }
 
