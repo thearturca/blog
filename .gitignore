@@ -39,3 +39,5 @@ lerna-debug.log*
 
 # Sqlite3 database files
 *.db
+
+/files
