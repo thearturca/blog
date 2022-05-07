@@ -1,4 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
+import { FileEntity } from '../blog/blog-post.entity';
 
 export class BlogPostDTO
 {
@@ -16,4 +17,7 @@ export class BlogPostDTO
 
     @ApiProperty()
     ownerUsername: string;
+
+    @ApiProperty()
+    files: FileEntity[]
 }

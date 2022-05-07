@@ -19,8 +19,11 @@ const routes: Routes =
 {
   imports: [
     ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', 'files'),
+      serveRoot: "/files",
+    }),
+    ServeStaticModule.forRoot({
       rootPath: join(__dirname, '..', 'client'),
-      exclude: ["/api"]
     }),
     ConfigModule.forRoot(
     {

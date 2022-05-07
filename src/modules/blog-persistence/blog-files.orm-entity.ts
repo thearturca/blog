@@ -1,17 +1,20 @@
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
-@Entity("blog", {})
-export class BlogOrmEntity
+@Entity("files", {})
+export class BlogFilesOrmEntity
 {
     @PrimaryGeneratedColumn()
     id: number;
 
     @Column()
-    timestamp: Date;
-
-    @Column()
-    body: string;
-
-    @Column()
     ownerId: number;
+
+    @Column()
+    postId: number;
+
+    @Column()
+    path: string;
+
+    @Column()
+    type: string;
 }

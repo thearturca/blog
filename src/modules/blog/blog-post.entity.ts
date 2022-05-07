@@ -1,3 +1,16 @@
+export enum fileTypes
+{
+    img = "img",
+    video = "video"
+}
+
+export interface FileEntity
+{
+    type: fileTypes,
+    path: string
+    fileId?: number,
+}
+
 export class BlogPostEntity
 {
     constructor
@@ -6,6 +19,7 @@ export class BlogPostEntity
         private readonly _body: string,
         private readonly _ownerId: number,
         private readonly _ownerUsername: string,
+        private readonly _files: FileEntity[],
         private readonly _id?: number,
     ) {}
 
@@ -30,6 +44,11 @@ export class BlogPostEntity
     }
 
     get ownerUsername(): string{
-        return this._ownerUsername
+        return this._ownerUsername;
+    }
+
+    get files(): FileEntity[]
+    {
+        return this._files;
     }
 }
