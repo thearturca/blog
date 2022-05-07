@@ -48,6 +48,7 @@ export class BlogController
         blogPostDTO.ownerId = savedBlogPostEntity.ownerId;
         blogPostDTO.timestamp = savedBlogPostEntity.timestamp;
         blogPostDTO.ownerUsername = savedBlogPostEntity.ownerUsername;
+        blogPostDTO.files = savedBlogPostEntity.files;
         return blogPostDTO;
     }
 
@@ -68,6 +69,7 @@ export class BlogController
         blogPostDTO.ownerId = updatedBlogPost.ownerId;
         blogPostDTO.timestamp = updatedBlogPost.timestamp;
         blogPostDTO.ownerUsername = updatedBlogPost.ownerUsername;
+        blogPostDTO.files = updatedBlogPost.files;
         return blogPostDTO;
     }
 
@@ -88,6 +90,7 @@ export class BlogController
         blogPostDTO.ownerId = removedBlogPost.ownerId;
         blogPostDTO.timestamp = removedBlogPost.timestamp;
         blogPostDTO.ownerUsername = removedBlogPost.ownerUsername;
+        blogPostDTO.files = removedBlogPost.files;
         return blogPostDTO;
     }
 
