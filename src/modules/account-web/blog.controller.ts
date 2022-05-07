@@ -40,7 +40,7 @@ export class BlogController
     @Post()
     async savePost(@Body() newBlogPostDTO: NewBlogPostDTO, @Req() req: UserReq)
     {
-        const newBlogPostEntity = new BlogPostEntity(new Date(), newBlogPostDTO.body, req.user.id, req.user.username, newBlogPostDTO.files || []);
+        const newBlogPostEntity = new BlogPostEntity(new Date(), newBlogPostDTO.body, req.user.id, req.user.username, []);
         const savedBlogPostEntity = await this._blogService.saveBlogPost(newBlogPostEntity);
         const blogPostDTO: BlogPostDTO = new BlogPostDTO();
         blogPostDTO.body = savedBlogPostEntity.body;

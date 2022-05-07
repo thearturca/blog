@@ -5,7 +5,4 @@ export class NewBlogPostDTO
 {
      @ApiProperty()
      readonly body: string;
-
-     @ApiProperty()
-     readonly files: FileEntity[] =  [];
 }
