@@ -1,14 +1,21 @@
+import { ApiProperty } from "@nestjs/swagger";
+
 export enum fileTypes
 {
     img = "img",
     video = "video"
 }
 
-export interface FileEntity
+export class FileEntity
 {
-    type: fileTypes,
-    path: string
-    fileId?: number,
+    @ApiProperty()
+    type: fileTypes;
+
+    @ApiProperty()
+    path: string;
+
+    @ApiProperty()
+    fileId?: number;
 }
 
 export class BlogPostEntity

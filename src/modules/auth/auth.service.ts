@@ -53,12 +53,11 @@ export class AuthService
             return null;
         }
         const isMatch: boolean = await bcrypt.compare(secret, user.userSecret);
-        
-        if(user && isMatch) 
+        if(!isMatch) 
         {
-            return user;
+            return null;
         }
-        return null;
+        return user;
     }
 
     async register(user: NewUserEntity) 
