@@ -97,7 +97,7 @@ export class BlogController
     @UseGuards(JwtAuthGuard)
     @Post('upload')
     @UseInterceptors(FileInterceptor("file", saveFileToStorage))
-    uploadFile(@UploadedFile() file: Express.Multer.File, @Req() req: UserReq, @Query("postId") postId: number) {
+    async uploadFile(@UploadedFile() file: Express.Multer.File, @Req() req: UserReq, @Query("postId") postId: number) {
         const fileName = file?.filename;
         if (!fileName) throw new HttpException("invalid file type", HttpStatus.CONFLICT);
         const typeCheck = (): fileTypes => 
@@ -121,6 +121,6 @@ export class BlogController
             path: "./files/"+fileName,
             type: type,
         }
-        return this._blogService.uploadFile(fileEntity, +postId, req.user.id);
+        return await this._blogService.uploadFile(fileEntity, +postId, req.user.id);
     }
 }
